@@ -119,21 +119,23 @@ signed short iGyrReadZ(void) {
 
 signed short iGyrRead_avg(int samples, char axis) {
 	
-	int j; signed short avg = 0;
+	int j; signed long int avg = 0;
 
     for(j = 0; j < samples; j++) {
 			switch(axis) {
 				case 'x':
-					avg += iGyrReadX() / samples;
+					avg += iGyrReadX();
 					break;
 				case 'y':
-					avg += iGyrReadY() / samples;
+					avg += iGyrReadY();
 					break;
 				case 'z':
-					avg += iGyrReadZ() / samples;
+					avg += iGyrReadZ();
 					break;
 			}
 		}			
 	
+		avg = avg / samples;
+		
     return avg;
 }
