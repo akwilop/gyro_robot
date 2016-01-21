@@ -19,12 +19,18 @@ void btInitialize() {
 }
 
 uint8_t btdata;
+extern int drive;
 
 void UART2_IRQHandler() {
 		
 	if(UART2->S1 & UART_S1_RDRF_MASK) {
 		btdata = UART2->D;	
-		
+		switch(btdata) {
+			case 'd':
+				if(drive) drive = 0;
+				else drive = 1;
+				break;
+		}
 	}
 	
 }

@@ -83,16 +83,16 @@ void motorDriverInit(void)
 	
 	//SET TPM1 as not so fast timer
 	
-	SIM->SCGC6 |= SIM_SCGC6_TPM1_MASK;
-	TPM1->SC &= ~TPM_SC_CPWMS_MASK; // default set
-	TPM1->SC |= TPM_SC_PS(7); // the same TPM_SC_PS(0)
+  /*SIM->SCGC6 |= SIM_SCGC6_TPM1_MASK;
+	TPM1->SC &= ~TPM_SC_CPWMS_MASK;
+	TPM1->SC |= TPM_SC_PS(7);
 	TPM1->CNT = 0x00; 
 	TPM1->MOD = 1000;
-	NVIC_ClearPendingIRQ(TPM1_IRQn);				/* Clear NVIC any pending interrupts on TPM0 */
+	NVIC_ClearPendingIRQ(TPM1_IRQn);
 	NVIC_EnableIRQ(TPM1_IRQn);	
-	NVIC_SetPriority(TPM1_IRQn,1);		/* Enable NVIC interrupts source for TPM0 module */
+	NVIC_SetPriority(TPM1_IRQn,1);
 	TPM1->SC |= TPM_SC_CMOD(1);
-	TPM1->SC &= ~TPM_SC_TOIE_MASK;	
+	TPM1->SC &= ~TPM_SC_TOIE_MASK;*/
 	
 	
 	//////////////////////////////////////// ENGINE CHANNELS ////////////////////////////////////////
