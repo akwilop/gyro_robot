@@ -87,7 +87,7 @@ void gyro_write_reg(uint8_t addr, uint8_t data)
 void gyro_init(void)
 {
 		hal_i2c1_init();         
-    gyro_write_reg(GYR_CTRL1, 0x0F);
+    gyro_write_reg(GYR_CTRL1, 0x0C);
 }
 
 /** \brief Funkcja zwracajaca wartosc osi X */	

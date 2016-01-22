@@ -1,7 +1,7 @@
 #include "sysTick.h"
 
-#define SENSITIVITY 40
-#define SPD 30
+#define SENSITIVITY 60
+#define SPD 50
 
 void sysTickInitialize(int ms) {	
 	if(ms > 345) ms = 345;
@@ -10,7 +10,8 @@ void sysTickInitialize(int ms) {
 
 extern int offset_gyr, flag, drive;
 signed short integral = 0, prev_integral = 0;
-unsigned int sample= 0, prev_sample = 0,  corr = 1;
+unsigned int sample= 0, prev_sample = 0, spd = 0, fcorr = 0;
+float scorr = 0;
 
 void SysTick_Handler() {
 	
@@ -25,17 +26,28 @@ void SysTick_Handler() {
 		if(drive) {
 				
 			if(integral > 0) {
-				setTracksSpeed(SPD, SPD - corr);
-				if(integral + 50 > prev_integral) corr++;
+				RGB(0, 0, 50);
+				setTracksSpeed(spd, spd - scorr - fcorr);
+				if(integral + 50 > prev_integral) scorr += 0.1;
+				if(integral > 1500) fcorr++;
+				else fcorr = 0;
 			}
 			else {
-				setTracksSpeed(SPD - corr, SPD);
-				if(integral - 50 < prev_integral) corr++;
+				RGB(50, 0, 0);
+				setTracksSpeed(spd - scorr - fcorr, spd);
+				if(integral - 50 < prev_integral) scorr += 0.1;
+				if(integral < 1500) fcorr++;
+				else fcorr = 0;
 			}
-			if((integral * prev_integral) < 0) corr = 0;
-					
+			
+			if((integral * prev_integral) < 0) scorr = 0;
+			if(spd < SPD) spd++;		
+			
 		}
-		else setTracksSpeed(0, 0);
+		else {
+			setTracksSpeed(0, 0);
+			RGB(0, 50, 0);
+		}
 		
 	}
 }

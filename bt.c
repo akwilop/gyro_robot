@@ -19,7 +19,7 @@ void btInitialize() {
 }
 
 uint8_t btdata;
-extern int drive;
+extern int drive, spd;
 
 void UART2_IRQHandler() {
 		
@@ -29,6 +29,7 @@ void UART2_IRQHandler() {
 			case 'd':
 				if(drive) drive = 0;
 				else drive = 1;
+				spd = 0;
 				break;
 		}
 	}
