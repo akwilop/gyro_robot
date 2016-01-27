@@ -15,23 +15,16 @@ void btInitialize() {
 	NVIC_ClearPendingIRQ(UART2_IRQn);
 	NVIC_EnableIRQ(UART2_IRQn);
 	NVIC_SetPriority (UART2_IRQn, 0);
-	
+		
 }
 
 uint8_t btdata;
-extern int drive, spd;
 
 void UART2_IRQHandler() {
 		
 	if(UART2->S1 & UART_S1_RDRF_MASK) {
 		btdata = UART2->D;	
-		switch(btdata) {
-			case 'd':
-				if(drive) drive = 0;
-				else drive = 1;
-				spd = 0;
-				break;
-		}
+		
 	}
 	
 }
@@ -88,17 +81,11 @@ int translateNA(int ascii) {
 	return 0; //error code
 }
 
-void waitms(int ms) {
-	int inside, outside;	
-	for(outside = 0; outside < ms; outside ++) {		
-		for(inside = 0; inside < 8000; inside++);			
-	}	
-}
-
-void sendShort(signed short data) {
+void send(int data, int digits) {
 	
-	char tab[7];
+	char tab[12];
 	int i;
+	if (digits > 6) digits = 6;
 	
 	if(data >= 0) {
 		tab[0] = 0x20;
@@ -107,12 +94,12 @@ void sendShort(signed short data) {
 		tab[0] = '-';
 		data = -data;
 	}
-	tab[6] = 0x0A;
-	for(i = 5; i > 0; i--) {
+	tab[digits + 1] = 0x0A;
+	for(i = digits; i > 0; i--) {
 				tab[i] = translateNA(data % 10);
 				data = (data - (data % 10)) / 10;
 			}
-	for(i = 0; i < 7; i++) {
+	for(i = 0; i < digits + 2; i++) {
 		while(!(UART2->S1 & UART_S1_TDRE_MASK));
 		UART2->D = tab[i];
 	}

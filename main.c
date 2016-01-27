@@ -5,27 +5,68 @@
 #include "i2c1.h"
 #include "gyro.h"
 #include "rgb.h"
+#include "gyroDriver.h"
 
-int offset_gyr = 0, flag = 0, drive = 0;
+int test = 0;
 
-signed int main(void) {
+int main(void) {
 	
+	rgbInitialize();
 	motorDriverInit();
 	btInitialize();
-	sysTickInitialize(5);
 	gyro_init();
-	rgbInitialize();
-	
-	RGB(50, 0, 0);
-	
-	waitms(1000);
-	offset_gyr	= iGyrRead_avg(0x00FF, 'z');
-	flag = 1;
-	setTracksDir(FORWARD, FORWARD);
+	sysTickInitialize(10);
 	
 	while(1) {
 	
-		
+		waitms(300);
+		RGB(0, 0, 15)
+		turn(-360);	
+		RGB(0, 15, 0);
+		test++;
+		send(test, 3);
+		waitms(300);
+		RGB(0, 0, 15)
+		turn(360);	
+		RGB(0, 15, 0);
+		test++;
+		send(test, 3);
+		waitms(300);
+		RGB(0, 0, 15)
+		turn(-180);	
+		RGB(0, 15, 0);
+		test++;
+		send(test, 3);
+		waitms(300);
+		RGB(0, 0, 15)
+		turn(180);	
+		RGB(0, 15, 0);
+		test++;
+		send(test, 3);
+		waitms(300);
+		RGB(0, 0, 15)
+		turn(-90);	
+		RGB(0, 15, 0);
+		test++;
+		send(test, 3);
+		waitms(300);
+		RGB(0, 0, 15)
+		turn(90);	
+		RGB(0, 15, 0);
+		test++;
+		send(test, 3);
+		waitms(300);
+		RGB(0, 0, 15)
+		turn(-30);	
+		RGB(0, 15, 0);
+		test++;
+		send(test, 3);
+		waitms(300);
+		RGB(0, 0, 15)
+		turn(30);	
+		RGB(0, 15, 0);
+		test++;
+		send(test, 3);
 		
 	}
 }

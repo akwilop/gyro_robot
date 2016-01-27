@@ -3,5 +3,6 @@
 #include "bt.h"
 #include "gyro.h"
 #include "rgb.h"
+#include "gyroDriver.h"
 
 void sysTickInitialize(int max_345);
