@@ -5,4 +5,4 @@
 #include "rgb.h"
 #include "gyroDriver.h"
 
-void sysTickInitialize(int max_345);
+void sysTickInitialize(int time);

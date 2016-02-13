@@ -7,66 +7,18 @@
 #include "rgb.h"
 #include "gyroDriver.h"
 
-int test = 0;
-
 int main(void) {
 	
 	rgbInitialize();
 	motorDriverInit();
 	btInitialize();
-	gyro_init();
-	sysTickInitialize(10);
+	gyroInit();
+	rgbNavLitesInitialize();
+	sysTickInitialize(25);
 	
-	while(1) {
+	rgbSetBrightness(15);
 	
-		waitms(300);
-		RGB(0, 0, 15)
-		turn(-360);	
-		RGB(0, 15, 0);
-		test++;
-		send(test, 3);
-		waitms(300);
-		RGB(0, 0, 15)
-		turn(360);	
-		RGB(0, 15, 0);
-		test++;
-		send(test, 3);
-		waitms(300);
-		RGB(0, 0, 15)
-		turn(-180);	
-		RGB(0, 15, 0);
-		test++;
-		send(test, 3);
-		waitms(300);
-		RGB(0, 0, 15)
-		turn(180);	
-		RGB(0, 15, 0);
-		test++;
-		send(test, 3);
-		waitms(300);
-		RGB(0, 0, 15)
-		turn(-90);	
-		RGB(0, 15, 0);
-		test++;
-		send(test, 3);
-		waitms(300);
-		RGB(0, 0, 15)
-		turn(90);	
-		RGB(0, 15, 0);
-		test++;
-		send(test, 3);
-		waitms(300);
-		RGB(0, 0, 15)
-		turn(-30);	
-		RGB(0, 15, 0);
-		test++;
-		send(test, 3);
-		waitms(300);
-		RGB(0, 0, 15)
-		turn(30);	
-		RGB(0, 15, 0);
-		test++;
-		send(test, 3);
-		
+	while(1) {	
+			
 	}
 }

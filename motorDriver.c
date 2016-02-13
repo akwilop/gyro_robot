@@ -1,3 +1,6 @@
+/** \file motorDriver.h
+		\brief Funkcje obslugi silnikow (wykorzystywane w bibliotece gyroDriver)*/
+
 #include "motorDriver.h"
 #include "math.h"
 //////////////////////////////////////// Global variables initialization ////////////////////////////////////////
@@ -114,25 +117,6 @@ void motorDriverInit(void)
 													
 	// Default value for Left engine
 	TPM0->CONTROLS[4].CnV = 0; // STOP
-	
-	
-	
-	//////////////////////////////////////// ENCODER CHANNELS ////////////////////////////////////////
-	
-	//Left Engine
-	// set TPM0 channel 3 - "Input capture on rising or falling edge"
-	TPM0->CONTROLS[3].CnSC |= TPM_CnSC_ELSA_MASK
-												 |	TPM_CnSC_ELSB_MASK;
-														
-	
-	//Right Engine
-	// set TPM0 channel 5 - "Input capture on rising or falling edge"
-	TPM0->CONTROLS[5].CnSC |= TPM_CnSC_ELSA_MASK
-											   |	TPM_CnSC_ELSB_MASK;
-																												
-																												
-	//////////////////////////////////////// ENCODER CHANNELS ////////////////////////////////////////
-	
 	
 	NVIC_ClearPendingIRQ(TPM0_IRQn);				/* Clear NVIC any pending interrupts on TPM0 */
 	NVIC_EnableIRQ(TPM0_IRQn);							/* Enable NVIC interrupts source for TPM0 module */

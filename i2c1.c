@@ -1,6 +1,5 @@
-/** \file i2c.h
-	\brief Obsluga komunikacji I2C1
-*/
+/** \file i2c1.h
+	  \brief Funkcje obslugi komunikacji I2C1*/
 #include "i2c1.h"
 
 /** \fn void i2c1_set_tx_mode(void)

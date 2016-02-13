@@ -1,72 +1,78 @@
+/** \file gyroDriver.h
+		\brief Funkcjonalnosci wykozystujace zyroskop*/
+						
 #include "gyroDriver.h"
 
-#define SENSITIVITY 50
-#define SPEED 100
-#define FIFO 10
-#define Kp 4
-#define Ki 0.01
-#define Kd 0
+signed short read = 0, prev_read = 0, actual_offset = 0;
+int integral;
+uint8_t gyro_ready = 0;
 
-signed short read = 0, prev_read = 0, actual_offset = 0, course = 0;
-int integral, gyro_ready = 0;
+/** \fn void gyroOffset(void)
+		\brief Funkcja usuwajaca offset z odczytow zyroskopu z osi Z*/
 
-void offset_gyro() {
-	waitms(100);
-	actual_offset = iGyrRead_avg(0xFF, 'z');
-	waitms(100);
+void gyroOffset() {
+	waitms(200);
+	actual_offset = gyroReadAvg(0xFF, 'z');
+	waitms(200);
 	integral = 0;
 }
 
 int gyro_init_flag = 1;
 
-void calculate_hdg() {
+/** \fn void gyroCalculateHdg(void)
+		\brief Funkcja obliczajaca kurs na podstawie danych predkosci obrotowej z zyroskopu.
+		\brief Nalezy ja umiescic tak, aby byla wykonywana cyklicznie co 2.5ms.
+					 Bez niej pozostale funkcje nie beda mogly dzialac prawidlowo*/
+
+void gyroCalculateHdg() {
 	
 	if(gyro_init_flag) {
-		RGB(65, 0, 0);
-		offset_gyro();
+		waitms(200);
+		gyroOffset();
 		gyro_init_flag = 0;
-		RGB(0, 15, 0);
 	}
 	else {
 		prev_read = read;
-		read = ((iGyrReadZ() - actual_offset) - ((iGyrReadZ() - actual_offset) % SENSITIVITY)) / SENSITIVITY;
+		read = ((gyroReadZ() - actual_offset) - ((gyroReadZ() - actual_offset) % SENSITIVITY)) / SENSITIVITY;
 		read = read << 1;
 		integral -= (prev_read + read) >> 1;
 		gyro_ready = 1;
 	}
+	
 }
 
-int get_hdg() {
-	return integral / 453;
+/** \fn signed short gyroGetHdg(void)
+		\brief Funkcja zwracajaca kurs robota*/
+
+signed short gyroGetHdg() {
+	return integral / 112.2;
 }
 
-signed short get_course() {
-	return course;
-}
+/** \fn void gyroTurn(signed short deg_10)
+		\brief Funkcja sluzaca do obrotu robota o okreslony kat.
+		\brief '+' zgodnie ze wskazowkami zegara
+					 '-' przeciwnie do ruchu wskazowek zegara
+		\param deg_10 Wybor kata do obrotu w dziesiatych czesciach stopnia*/
 
-void turn(int deg) {
-	int prev_prop = 0, PID = 0;
+void gyroTurn(signed short deg_10) {
+	int PID = 0;
 	int prop = 0, integ = 0;
 	int result = 0;
-	offset_gyro();
+	gyroOffset();
 
 	while(1) {
 		if(gyro_ready) {
-			prev_prop = prop;											
-			prop = deg - get_hdg();		
-			if((prop > -3) && (prop < 3))integ += (prop + prev_prop) / 2;		
-			else integ = 0;
-			PID = ((Kp * prop) + (Ki * integ));		//PI
-			if(PID > 0) PID += 20;
-			else if (PID < 0) PID -= 20;		//popr na gasienice
-			if(PID > 50) PID = 50;					
-			else if(PID < -50) PID = -50;		//ogr predkosci
+			prop = deg_10 - gyroGetHdg();		
+			if((prop > -30) && (prop < 30))integ += prop;		
+			else integ = 0;		
+			PID = ((Kp_turn * prop) + (Ki_turn * integ));
+			if(PID > 45) PID = 45;					
+			else if(PID < -45) PID = -45;
 			setTracks(PID, -PID);
 			gyro_ready = 0;
-			if(get_hdg() == deg) result ++;
+			if((prop < 4) && (prop > -4)) result ++;
 			else result = 0;
 			if(result == 10) {
-				waitms(1);
 				setTracks(0, 0);
 				break;				
 			}
@@ -74,7 +80,58 @@ void turn(int deg) {
 	}	
 }
 
-void setTracks(int left, int right) {
+/** \fn void gyroStraight(signed short ticks, signed short speed)
+		\brief Funkcja do jazdy robota na wprost.
+		\param ticks Czas jazdy * 2.5ms
+		\param speed Szybkosc jazdy +/- 100, +przod, -tyl*/
+
+void gyroStraight(signed short ticks, signed short speed) {
+	int PID = 0;
+	int prop = 0, integ = 0;
+	gyroOffset();
+	
+	while(1) {
+		if(gyro_ready) {
+			prop = - gyroGetHdg();
+			integ += prop;
+			PID = ((Kp_straight * prop) + (Ki_straight * integ));		//PI
+			setTracks(speed + PID, speed - PID);
+			gyro_ready = 0;
+			ticks--;
+			if(ticks <= 0) {
+				setTracks(0, 0);
+				break;
+			}
+		}
+	}	
+}
+
+/** \fn void normal(signed short ticks, signed short speed)
+		\brief Funkcja do jazdy robota na wprost bez stabilizacji (w celach porownawczych).
+		\param ticks Czas jazdy * 2.5ms
+		\param speed Szybkosc jazdy +/- 100, +przod, -tyl*/
+
+void normal(signed short ticks, signed short speed) {	
+	setTracks(speed, speed);
+	while(1) {
+		if(gyro_ready) {
+			gyro_ready = 0;
+			ticks--;
+			if(ticks <= 0) {
+				setTracks(0, 0);
+				break;
+			}
+		}
+	}
+}	
+
+/** \fn void setTracks(signed short left, signed short right)
+		\brief Funkcja pozwalajaca ustawic predkosci gasienic przyjmujaca wartosci +/- 100.
+		\param left Szybkosc jazdy lewej gasienicy +/- 100, +przod, -tyl
+		\param right Szybkosc jazdy prawej gasienicy +/- 100, +przod, -tyl*/
+
+void setTracks(signed short left, signed short right) {
+	waitms(1);
 	if(left >= 0) {
 		setLeftTrackDir(FORWARD);
 		setLeftTrackSpeed(left);
@@ -93,39 +150,13 @@ void setTracks(int left, int right) {
 	}
 }
 
-void waitms(int ms) {
+/** \fn void waitms(unsigned short ms)
+		\brief Funkcja sluzaca do czekania.
+		\param ms Ilosc ms do odczekania*/
+
+void waitms(unsigned short ms) {
 	int inside, outside;	
 	for(outside = 0; outside < ms; outside ++) {		
 		for(inside = 0; inside < 8000; inside++);			
 	}	
 }
-
-//void turn(int deg) {
-//	int prev_prop = 0, PID = 0;
-//	int prop = 0, integ = 0, deriv = 0;
-//	int result = 0;
-//	offset_gyro();
-//	
-//	while(1) {
-//		if(gyro_ready) {
-//			prev_prop = prop;
-//			prop = deg - get_hdg();
-//			integ += (prop + prev_prop) / 2;
-//			if(Ki * integ > SPEED) integ = SPEED;
-//			else if(Ki * integ < -SPEED) integ = -SPEED;
-//			deriv = prop - prev_prop;
-//			PID = ((Kp * prop) + (Ki * integ) + (Kd * deriv));
-//			if(PID > SPEED) PID = SPEED;
-//			else if(PID < -SPEED) PID = -SPEED;
-//			setTracks(PID, -PID);
-//			gyro_ready = 0;
-//			if(get_hdg() == deg) result ++;
-//			else result = 0;
-//			if(result == 10) {
-//				waitms(1);
-//				setTracks(0, 0);
-//				break;				
-//			}
-//		}
-//	}	
-//}

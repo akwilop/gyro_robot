@@ -1,3 +1,6 @@
+/** \file bt.h
+		\brief Funkcje obslugi komunikacji Blueooth*/
+
 #include "bt.h"
 
 void btInitialize() {
@@ -14,71 +17,79 @@ void btInitialize() {
 	UART2->C2 |= (UART_C2_RE_MASK | UART_C2_TE_MASK | UART_C2_RIE_MASK);
 	NVIC_ClearPendingIRQ(UART2_IRQn);
 	NVIC_EnableIRQ(UART2_IRQn);
-	NVIC_SetPriority (UART2_IRQn, 0);
+	NVIC_SetPriority(UART2_IRQn, 1);
 		
 }
 
-uint8_t btdata;
+signed short int time, speed, hdg;
+uint8_t state = READY;
 
 void UART2_IRQHandler() {
-		
 	if(UART2->S1 & UART_S1_RDRF_MASK) {
-		btdata = UART2->D;	
-		
+		switch(UART2->D) {
+			case 's':
+			case 'S':
+				NVIC_DisableIRQ(UART2_IRQn);
+				while(!(UART2->S1 & UART_S1_RDRF_MASK));
+				time = (UART2->D - '0') * 10;
+				while(!(UART2->S1 & UART_S1_RDRF_MASK));
+				time += (UART2->D - '0');
+				while(!(UART2->S1 & UART_S1_RDRF_MASK));
+				speed = (UART2->D - '0') * 100;
+				while(!(UART2->S1 & UART_S1_RDRF_MASK));
+				speed += (UART2->D - '0') * 10;
+				while(!(UART2->S1 & UART_S1_RDRF_MASK));
+				speed += (UART2->D - '0');
+				speed -= 100;
+				state = BUSY;
+				gyroStraight(time * 40, speed);
+				state = COMPLETE;
+				waitms(500);
+				state = READY;
+				break;
+			case 'n':
+			case 'N':
+				NVIC_DisableIRQ(UART2_IRQn);
+				while(!(UART2->S1 & UART_S1_RDRF_MASK));
+				time = (UART2->D - '0') * 10;
+				while(!(UART2->S1 & UART_S1_RDRF_MASK));
+				time += (UART2->D - '0');
+				while(!(UART2->S1 & UART_S1_RDRF_MASK));
+				speed = (UART2->D - '0') * 100;
+				while(!(UART2->S1 & UART_S1_RDRF_MASK));
+				speed += (UART2->D - '0') * 10;
+				while(!(UART2->S1 & UART_S1_RDRF_MASK));
+				speed += (UART2->D - '0');
+				speed -= 100;
+				state = BUSY;
+				normal(time * 40, speed);	
+				state = COMPLETE;
+				waitms(500);
+				state = READY;			
+				break;
+			case 't':
+			case 'T':
+				NVIC_DisableIRQ(UART2_IRQn);
+				while(!(UART2->S1 & UART_S1_RDRF_MASK));
+				hdg = (UART2->D - '0') * 100;
+				while(!(UART2->S1 & UART_S1_RDRF_MASK));
+				hdg += (UART2->D - '0') * 10;
+				while(!(UART2->S1 & UART_S1_RDRF_MASK));
+				hdg += (UART2->D - '0');
+				hdg = (hdg - 500) * 10;
+				state = BUSY;
+				gyroTurn(hdg);
+				state = COMPLETE;
+				waitms(500);
+				state = READY;
+				break;
+			case 'h':
+			case 'H':
+				NVIC_DisableIRQ(UART2_IRQn);
+				send(gyroGetHdg(), 4);
+		}	
+	NVIC_EnableIRQ(UART2_IRQn);		
 	}
-	
-}
-
-int translateAN(int ascii) {
-	switch(ascii) {
-		case 48:
-			return 0;
-		case 49:
-			return 1;
-		case 50:
-			return 2;
-		case 51:
-			return 3;
-		case 52:
-			return 4;
-		case 53:
-			return 5;
-		case 54:
-			return 6;
-		case 55:
-			return 7;
-		case 56:
-			return 8;
-		case 57:
-			return 9;
-	}
-	return 10; //error code
-}
-
-int translateNA(int ascii) {
-	switch(ascii) {
-		case 0:
-			return 48;
-		case 1:
-			return 49;
-		case 2:
-			return 50;
-		case 3:
-			return 51;
-		case 4:
-			return 52;
-		case 5:
-			return 53;
-		case 6:
-			return 54;
-		case 7:
-			return 55;
-		case 8:
-			return 56;
-		case 9:
-			return 57;
-	}
-	return 0; //error code
 }
 
 void send(int data, int digits) {
@@ -96,7 +107,7 @@ void send(int data, int digits) {
 	}
 	tab[digits + 1] = 0x0A;
 	for(i = digits; i > 0; i--) {
-				tab[i] = translateNA(data % 10);
+				tab[i] =(data % 10) + '0';
 				data = (data - (data % 10)) / 10;
 			}
 	for(i = 0; i < digits + 2; i++) {

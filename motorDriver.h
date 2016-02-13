@@ -37,37 +37,11 @@
 #define LESS 0
 #define MORE 1
 
-/*
-
-//////////////////////////////////////// Global variables initialization ////////////////////////////////////////
-
-
-
-// drive way and encoder turning functionality variables
-uint32_t actualDistance = 0;
-uint8_t flagLimitDistance = 0;
-uint32_t limit = 0;
-
-// compass turning functionality variables
-uint8_t flagLimitAngle = 0;
-uint32_t limitAngle = 0;
-
-// distance counter functionality variables
-uint32_t countersDistance = 0;
-uint8_t flagCounting = 0;
-uint8_t flagTurning = 0;
-
-*/
-
 //////////////////////////////////////// Functions ////////////////////////////////////////
-
-
 
 // driver initialization function
 
 void motorDriverInit(void);
-
-
 
 // "set" functions for direct, low-level control
 

@@ -18,15 +18,15 @@
 #define GYR_OUT_Z_L		0x2C
 #define GYR_OUT_Z_H		0x2D
 
-void gyro_init(void);
+void gyroInit(void);
 static void pause(void);
 
 uint8_t gyro_read_reg(uint8_t addr);
 void gyro_write_reg(uint8_t addr, uint8_t data);
 
-short iGyrReadX(void);
-short iGyrReadY(void);
-short iGyrReadZ(void);
-signed short iGyrRead_avg(int, char);
+short gyroReadX(void);
+short gyroReadY(void);
+short gyroReadZ(void);
+signed short gyroReadAvg(int, char);
 
 #endif //__I2C_H__
