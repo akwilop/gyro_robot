@@ -16,7 +16,7 @@ int main(void) {
 	rgbNavLitesInitialize();
 	sysTickInitialize(25);
 	
-	rgbSetBrightness(15);
+	rgbSetBrightness(100);
 	
 	while(1) {	
 			

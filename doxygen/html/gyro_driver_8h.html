@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.11"/>
-<title>gyro_robot: C:/Users/akwilop/Documents/TMP2/10_GYRO/gyroDriver.h File Reference</title>
+<title>gyroDriver: gyroDriver.h File Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -16,8 +16,9 @@
 <table cellspacing="0" cellpadding="0">
  <tbody>
  <tr style="height: 56px;">
+  <td id="projectlogo"><img alt="Logo" src="gyro_robot.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
-   <div id="projectname">gyro_robot
+   <div id="projectname">gyroDriver
    </div>
   </td>
  </tr>
@@ -44,16 +45,13 @@
 <a href="#define-members">Macros</a> &#124;
 <a href="#func-members">Functions</a>  </div>
   <div class="headertitle">
-<div class="title">C:/Users/akwilop/Documents/TMP2/10_GYRO/gyroDriver.h File Reference</div>  </div>
+<div class="title">gyroDriver.h File Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
 
 <p>Funkcjonalnosci wykozystujace zyroskop.  
 <a href="#details">More...</a></p>
-<div class="textblock"><code>#include &quot;MKL46Z4.h&quot;</code><br />
-<code>#include &quot;<a class="el" href="gyro_8h_source.html">gyro.h</a>&quot;</code><br />
-<code>#include &quot;<a class="el" href="bt_8h_source.html">bt.h</a>&quot;</code><br />
-<code>#include &quot;<a class="el" href="rgb_8h_source.html">rgb.h</a>&quot;</code><br />
+<div class="textblock"><code>#include &quot;<a class="el" href="gyro_8h_source.html">gyro.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="motor_driver_8h_source.html">motorDriver.h</a>&quot;</code><br />
 </div>
 <p><a href="gyro_driver_8h_source.html">Go to the source code of this file.</a></p>
@@ -61,11 +59,8 @@
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
 Macros</h2></td></tr>
 <tr class="memitem:aa6ac8087ed34271031291f59014fe310"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aa6ac8087ed34271031291f59014fe310"></a>
-#define&#160;</td><td class="memItemRight" valign="bottom"><b>SENSITIVITY</b>&#160;&#160;&#160;80	 /* Kwantyzacja danych z zyroskopu - przeciwdzialanie szumom/zakloceniom. Zmiana spowoduje bledne dzialanie funkcji <a class="el" href="gyro_driver_8h.html#afceb83ef94ff6a34caa533c478e57216">gyroGetHdg</a> oraz <a class="el" href="gyro_driver_8h.html#a2810854ae06eb6bde8eae6e518bdf411">gyroTurn</a> */</td></tr>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>SENSITIVITY</b>&#160;&#160;&#160;80	 /** Kwantyzacja danych z zyroskopu - przeciwdzialanie zakloceniom. Zmiana spowoduje bledne dzialanie funkcji <a class="el" href="gyro_driver_8h.html#afceb83ef94ff6a34caa533c478e57216">gyroGetHdg</a> oraz <a class="el" href="gyro_driver_8h.html#a2810854ae06eb6bde8eae6e518bdf411">gyroTurn</a> */</td></tr>
 <tr class="separator:aa6ac8087ed34271031291f59014fe310"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aac3553b3932cbfeeac4526ce7ca0336b"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aac3553b3932cbfeeac4526ce7ca0336b"></a>
-#define&#160;</td><td class="memItemRight" valign="bottom"><b>SPEED</b>&#160;&#160;&#160;100	 /** Maksymalna predkosc gasienic w trakcie obrotu */</td></tr>
-<tr class="separator:aac3553b3932cbfeeac4526ce7ca0336b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae233c67b73255986f7df7265f0b6e086"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ae233c67b73255986f7df7265f0b6e086"></a>
 #define&#160;</td><td class="memItemRight" valign="bottom"><b>Kp_turn</b>&#160;&#160;&#160;0.6	 /** Wspolczynnik czlonu proporcjonalnego regulatora PI regulujacego obrotu */</td></tr>
 <tr class="separator:ae233c67b73255986f7df7265f0b6e086"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -83,7 +78,7 @@ Macros</h2></td></tr>
 Functions</h2></td></tr>
 <tr class="memitem:a95fcaa2439475042161a136d25c51733"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a95fcaa2439475042161a136d25c51733"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="gyro_driver_8h.html#a95fcaa2439475042161a136d25c51733">gyroOffset</a> (void)</td></tr>
-<tr class="memdesc:a95fcaa2439475042161a136d25c51733"><td class="mdescLeft">&#160;</td><td class="mdescRight">Funkcja usuwajaca offset z odczytow zyroskopu. <br /></td></tr>
+<tr class="memdesc:a95fcaa2439475042161a136d25c51733"><td class="mdescLeft">&#160;</td><td class="mdescRight">Funkcja usuwajaca offset z odczytow zyroskopu z osi Z oraz zerujaca aktualny kurs(wartosc ktora zwroci '<a class="el" href="gyro_driver_8h.html#afceb83ef94ff6a34caa533c478e57216" title="Funkcja zwracajaca kurs robota. ">gyroGetHdg()</a>'. <br /></td></tr>
 <tr class="separator:a95fcaa2439475042161a136d25c51733"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae9817da5a5bcef95d192f1d0d9a613d8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="gyro_driver_8h.html#ae9817da5a5bcef95d192f1d0d9a613d8">gyroCalculateHdg</a> (void)</td></tr>
 <tr class="memdesc:ae9817da5a5bcef95d192f1d0d9a613d8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Funkcja obliczajaca kurs na podstawie danych predkosci obrotowej z zyroskopu.  <a href="#ae9817da5a5bcef95d192f1d0d9a613d8">More...</a><br /></td></tr>
@@ -155,7 +150,7 @@ signed short&#160;</td><td class="memItemRight" valign="bottom"><a class="el" hr
 </div><div class="memdoc">
 
 <p>Funkcja do jazdy robota na wprost. </p>
-<dl class="params"><dt>Parameters</dt><dd>
+<p>Prosze zwrocic uwage, ze funkcja wywoluje '<a class="el" href="gyro_driver_8h.html#a95fcaa2439475042161a136d25c51733" title="Funkcja usuwajaca offset z odczytow zyroskopu z osi Z oraz zerujaca aktualny kurs(wartosc ktora zwroc...">gyroOffset()</a>' co zeruje aktualna wartosc zwracana przez '<a class="el" href="gyro_driver_8h.html#afceb83ef94ff6a34caa533c478e57216" title="Funkcja zwracajaca kurs robota. ">gyroGetHdg()</a>'. </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">ticks</td><td>Czas jazdy * 2.5ms </td></tr>
     <tr><td class="paramname">speed</td><td>Szybkosc jazdy +/- 100, +przod, -tyl </td></tr>
@@ -180,9 +175,11 @@ signed short&#160;</td><td class="memItemRight" valign="bottom"><a class="el" hr
 </div><div class="memdoc">
 
 <p>Funkcja sluzaca do obrotu robota o okreslony kat. </p>
-<p>'+' zgodnie ze wskazowkami zegara '-' przeciwnie do ruchu wskazowek zegara </p><dl class="params"><dt>Parameters</dt><dd>
+<p>Prosze zwrocic uwage, ze funkcja wywoluje '<a class="el" href="gyro_driver_8h.html#a95fcaa2439475042161a136d25c51733" title="Funkcja usuwajaca offset z odczytow zyroskopu z osi Z oraz zerujaca aktualny kurs(wartosc ktora zwroc...">gyroOffset()</a>' co zeruje aktualna wartosc zwracana przez '<a class="el" href="gyro_driver_8h.html#afceb83ef94ff6a34caa533c478e57216" title="Funkcja zwracajaca kurs robota. ">gyroGetHdg()</a>'. </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">deg_10</td><td>Wybor kata do obrotu w dziesiatych czesciach stopnia </td></tr>
+    <tr><td class="paramname">deg_10</td><td>Wybor kata do obrotu w dziesiatych czesciach stopnia <br />
+ '+' zgodnie ze wskazowkami zegara <br />
+ '-' przeciwnie do ruchu wskazowek zegara </td></tr>
   </table>
   </dd>
 </dl>

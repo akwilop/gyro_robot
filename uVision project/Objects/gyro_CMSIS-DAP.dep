@@ -1,0 +1,102 @@
+Dependencies for Project 'gyro', Target 'CMSIS-DAP': (DO NOT MODIFY !)
+F (.\main.c)(0x56BF6BCA)(-c --cpu Cortex-M0+ -D__EVAL -g -O0 --apcs=interwork --split_sections-I C:\Users\akwilop\Documents\TMP2\10_GYRO\RTE-I D:\Programs\Keil_v5\ARM\PACK\ARM\CMSIS\4.3.0\CMSIS\Include-I D:\Programs\Keil_v5\ARM\PACK\Keil\Kinetis_KLxx_DFP\1.3.0\Device\Include-D__UVISION_VERSION="516" -D_RTE_ -DMKL46Z256xxx4-o .\objects\main.o --omf_browse .\objects\main.crf --depend .\objects\main.d)
+I (D:\Programs\Keil_v5\ARM\PACK\Keil\Kinetis_KLxx_DFP\1.3.0\Device\Include\MKL46Z4.h)(0x51C00508)
+I (D:\Programs\Keil_v5\ARM\PACK\ARM\CMSIS\4.3.0\CMSIS\Include\core_cm0plus.h)(0x55099064)
+I (D:\Programs\Keil_v5\ARM\ARMCC\include\stdint.h)(0x55AF3C42)
+I (D:\Programs\Keil_v5\ARM\PACK\ARM\CMSIS\4.3.0\CMSIS\Include\core_cmInstr.h)(0x55099064)
+I (D:\Programs\Keil_v5\ARM\PACK\ARM\CMSIS\4.3.0\CMSIS\Include\core_cmFunc.h)(0x55099064)
+I (D:\Programs\Keil_v5\ARM\PACK\Keil\Kinetis_KLxx_DFP\1.3.0\Device\Include\system_MKL46Z4.h)(0x51C00508)
+I (bt.h)(0x56BE16F9)
+I (rgb.h)(0x56BE0D29)
+I (gyroDriver.h)(0x56C1FC65)
+I (gyro.h)(0x56BE15F4)
+I (i2c1.h)(0x56A7E9F1)
+I (motorDriver.h)(0x56B9F04C)
+I (sysTick.h)(0x56BE0A22)
+F (.\bt.c)(0x56BF41A3)(-c --cpu Cortex-M0+ -D__EVAL -g -O0 --apcs=interwork --split_sections-I C:\Users\akwilop\Documents\TMP2\10_GYRO\RTE-I D:\Programs\Keil_v5\ARM\PACK\ARM\CMSIS\4.3.0\CMSIS\Include-I D:\Programs\Keil_v5\ARM\PACK\Keil\Kinetis_KLxx_DFP\1.3.0\Device\Include-D__UVISION_VERSION="516" -D_RTE_ -DMKL46Z256xxx4-o .\objects\bt.o --omf_browse .\objects\bt.crf --depend .\objects\bt.d)
+I (bt.h)(0x56BE16F9)
+I (D:\Programs\Keil_v5\ARM\PACK\Keil\Kinetis_KLxx_DFP\1.3.0\Device\Include\MKL46Z4.h)(0x51C00508)
+I (D:\Programs\Keil_v5\ARM\PACK\ARM\CMSIS\4.3.0\CMSIS\Include\core_cm0plus.h)(0x55099064)
+I (D:\Programs\Keil_v5\ARM\ARMCC\include\stdint.h)(0x55AF3C42)
+I (D:\Programs\Keil_v5\ARM\PACK\ARM\CMSIS\4.3.0\CMSIS\Include\core_cmInstr.h)(0x55099064)
+I (D:\Programs\Keil_v5\ARM\PACK\ARM\CMSIS\4.3.0\CMSIS\Include\core_cmFunc.h)(0x55099064)
+I (D:\Programs\Keil_v5\ARM\PACK\Keil\Kinetis_KLxx_DFP\1.3.0\Device\Include\system_MKL46Z4.h)(0x51C00508)
+I (rgb.h)(0x56BE0D29)
+I (gyroDriver.h)(0x56C1FC65)
+I (gyro.h)(0x56BE15F4)
+I (i2c1.h)(0x56A7E9F1)
+I (motorDriver.h)(0x56B9F04C)
+F (.\sysTick.c)(0x56BF4129)(-c --cpu Cortex-M0+ -D__EVAL -g -O0 --apcs=interwork --split_sections-I C:\Users\akwilop\Documents\TMP2\10_GYRO\RTE-I D:\Programs\Keil_v5\ARM\PACK\ARM\CMSIS\4.3.0\CMSIS\Include-I D:\Programs\Keil_v5\ARM\PACK\Keil\Kinetis_KLxx_DFP\1.3.0\Device\Include-D__UVISION_VERSION="516" -D_RTE_ -DMKL46Z256xxx4-o .\objects\systick.o --omf_browse .\objects\systick.crf --depend .\objects\systick.d)
+I (sysTick.h)(0x56BE0A22)
+I (D:\Programs\Keil_v5\ARM\PACK\Keil\Kinetis_KLxx_DFP\1.3.0\Device\Include\MKL46Z4.h)(0x51C00508)
+I (D:\Programs\Keil_v5\ARM\PACK\ARM\CMSIS\4.3.0\CMSIS\Include\core_cm0plus.h)(0x55099064)
+I (D:\Programs\Keil_v5\ARM\ARMCC\include\stdint.h)(0x55AF3C42)
+I (D:\Programs\Keil_v5\ARM\PACK\ARM\CMSIS\4.3.0\CMSIS\Include\core_cmInstr.h)(0x55099064)
+I (D:\Programs\Keil_v5\ARM\PACK\ARM\CMSIS\4.3.0\CMSIS\Include\core_cmFunc.h)(0x55099064)
+I (D:\Programs\Keil_v5\ARM\PACK\Keil\Kinetis_KLxx_DFP\1.3.0\Device\Include\system_MKL46Z4.h)(0x51C00508)
+I (motorDriver.h)(0x56B9F04C)
+I (bt.h)(0x56BE16F9)
+I (rgb.h)(0x56BE0D29)
+I (gyroDriver.h)(0x56C1FC65)
+I (gyro.h)(0x56BE15F4)
+I (i2c1.h)(0x56A7E9F1)
+F (.\i2c1.c)(0x56BF4129)(-c --cpu Cortex-M0+ -D__EVAL -g -O0 --apcs=interwork --split_sections-I C:\Users\akwilop\Documents\TMP2\10_GYRO\RTE-I D:\Programs\Keil_v5\ARM\PACK\ARM\CMSIS\4.3.0\CMSIS\Include-I D:\Programs\Keil_v5\ARM\PACK\Keil\Kinetis_KLxx_DFP\1.3.0\Device\Include-D__UVISION_VERSION="516" -D_RTE_ -DMKL46Z256xxx4-o .\objects\i2c1.o --omf_browse .\objects\i2c1.crf --depend .\objects\i2c1.d)
+I (i2c1.h)(0x56A7E9F1)
+I (D:\Programs\Keil_v5\ARM\PACK\Keil\Kinetis_KLxx_DFP\1.3.0\Device\Include\MKL46Z4.h)(0x51C00508)
+I (D:\Programs\Keil_v5\ARM\PACK\ARM\CMSIS\4.3.0\CMSIS\Include\core_cm0plus.h)(0x55099064)
+I (D:\Programs\Keil_v5\ARM\ARMCC\include\stdint.h)(0x55AF3C42)
+I (D:\Programs\Keil_v5\ARM\PACK\ARM\CMSIS\4.3.0\CMSIS\Include\core_cmInstr.h)(0x55099064)
+I (D:\Programs\Keil_v5\ARM\PACK\ARM\CMSIS\4.3.0\CMSIS\Include\core_cmFunc.h)(0x55099064)
+I (D:\Programs\Keil_v5\ARM\PACK\Keil\Kinetis_KLxx_DFP\1.3.0\Device\Include\system_MKL46Z4.h)(0x51C00508)
+F (.\gyro.c)(0x56BF3B3C)(-c --cpu Cortex-M0+ -D__EVAL -g -O0 --apcs=interwork --split_sections-I C:\Users\akwilop\Documents\TMP2\10_GYRO\RTE-I D:\Programs\Keil_v5\ARM\PACK\ARM\CMSIS\4.3.0\CMSIS\Include-I D:\Programs\Keil_v5\ARM\PACK\Keil\Kinetis_KLxx_DFP\1.3.0\Device\Include-D__UVISION_VERSION="516" -D_RTE_ -DMKL46Z256xxx4-o .\objects\gyro.o --omf_browse .\objects\gyro.crf --depend .\objects\gyro.d)
+I (gyro.h)(0x56BE15F4)
+I (D:\Programs\Keil_v5\ARM\PACK\Keil\Kinetis_KLxx_DFP\1.3.0\Device\Include\MKL46Z4.h)(0x51C00508)
+I (D:\Programs\Keil_v5\ARM\PACK\ARM\CMSIS\4.3.0\CMSIS\Include\core_cm0plus.h)(0x55099064)
+I (D:\Programs\Keil_v5\ARM\ARMCC\include\stdint.h)(0x55AF3C42)
+I (D:\Programs\Keil_v5\ARM\PACK\ARM\CMSIS\4.3.0\CMSIS\Include\core_cmInstr.h)(0x55099064)
+I (D:\Programs\Keil_v5\ARM\PACK\ARM\CMSIS\4.3.0\CMSIS\Include\core_cmFunc.h)(0x55099064)
+I (D:\Programs\Keil_v5\ARM\PACK\Keil\Kinetis_KLxx_DFP\1.3.0\Device\Include\system_MKL46Z4.h)(0x51C00508)
+I (i2c1.h)(0x56A7E9F1)
+F (.\motorDriver.c)(0x56BF40AC)(-c --cpu Cortex-M0+ -D__EVAL -g -O0 --apcs=interwork --split_sections-I C:\Users\akwilop\Documents\TMP2\10_GYRO\RTE-I D:\Programs\Keil_v5\ARM\PACK\ARM\CMSIS\4.3.0\CMSIS\Include-I D:\Programs\Keil_v5\ARM\PACK\Keil\Kinetis_KLxx_DFP\1.3.0\Device\Include-D__UVISION_VERSION="516" -D_RTE_ -DMKL46Z256xxx4-o .\objects\motordriver.o --omf_browse .\objects\motordriver.crf --depend .\objects\motordriver.d)
+I (motorDriver.h)(0x56B9F04C)
+I (D:\Programs\Keil_v5\ARM\PACK\Keil\Kinetis_KLxx_DFP\1.3.0\Device\Include\MKL46Z4.h)(0x51C00508)
+I (D:\Programs\Keil_v5\ARM\PACK\ARM\CMSIS\4.3.0\CMSIS\Include\core_cm0plus.h)(0x55099064)
+I (D:\Programs\Keil_v5\ARM\ARMCC\include\stdint.h)(0x55AF3C42)
+I (D:\Programs\Keil_v5\ARM\PACK\ARM\CMSIS\4.3.0\CMSIS\Include\core_cmInstr.h)(0x55099064)
+I (D:\Programs\Keil_v5\ARM\PACK\ARM\CMSIS\4.3.0\CMSIS\Include\core_cmFunc.h)(0x55099064)
+I (D:\Programs\Keil_v5\ARM\PACK\Keil\Kinetis_KLxx_DFP\1.3.0\Device\Include\system_MKL46Z4.h)(0x51C00508)
+I (D:\Programs\Keil_v5\ARM\ARMCC\include\math.h)(0x55AF3C42)
+F (.\rgb.c)(0x56BF3EA8)(-c --cpu Cortex-M0+ -D__EVAL -g -O0 --apcs=interwork --split_sections-I C:\Users\akwilop\Documents\TMP2\10_GYRO\RTE-I D:\Programs\Keil_v5\ARM\PACK\ARM\CMSIS\4.3.0\CMSIS\Include-I D:\Programs\Keil_v5\ARM\PACK\Keil\Kinetis_KLxx_DFP\1.3.0\Device\Include-D__UVISION_VERSION="516" -D_RTE_ -DMKL46Z256xxx4-o .\objects\rgb.o --omf_browse .\objects\rgb.crf --depend .\objects\rgb.d)
+I (rgb.h)(0x56BE0D29)
+I (D:\Programs\Keil_v5\ARM\PACK\Keil\Kinetis_KLxx_DFP\1.3.0\Device\Include\MKL46Z4.h)(0x51C00508)
+I (D:\Programs\Keil_v5\ARM\PACK\ARM\CMSIS\4.3.0\CMSIS\Include\core_cm0plus.h)(0x55099064)
+I (D:\Programs\Keil_v5\ARM\ARMCC\include\stdint.h)(0x55AF3C42)
+I (D:\Programs\Keil_v5\ARM\PACK\ARM\CMSIS\4.3.0\CMSIS\Include\core_cmInstr.h)(0x55099064)
+I (D:\Programs\Keil_v5\ARM\PACK\ARM\CMSIS\4.3.0\CMSIS\Include\core_cmFunc.h)(0x55099064)
+I (D:\Programs\Keil_v5\ARM\PACK\Keil\Kinetis_KLxx_DFP\1.3.0\Device\Include\system_MKL46Z4.h)(0x51C00508)
+I (gyroDriver.h)(0x56C1FC65)
+I (gyro.h)(0x56BE15F4)
+I (i2c1.h)(0x56A7E9F1)
+I (bt.h)(0x56BE16F9)
+I (motorDriver.h)(0x56B9F04C)
+F (.\gyroDriver.c)(0x56C22DF4)(-c --cpu Cortex-M0+ -D__EVAL -g -O0 --apcs=interwork --split_sections-I C:\Users\akwilop\Documents\TMP2\10_GYRO\RTE-I D:\Programs\Keil_v5\ARM\PACK\ARM\CMSIS\4.3.0\CMSIS\Include-I D:\Programs\Keil_v5\ARM\PACK\Keil\Kinetis_KLxx_DFP\1.3.0\Device\Include-D__UVISION_VERSION="516" -D_RTE_ -DMKL46Z256xxx4-o .\objects\gyrodriver.o --omf_browse .\objects\gyrodriver.crf --depend .\objects\gyrodriver.d)
+I (gyroDriver.h)(0x56C1FC65)
+I (gyro.h)(0x56BE15F4)
+I (D:\Programs\Keil_v5\ARM\PACK\Keil\Kinetis_KLxx_DFP\1.3.0\Device\Include\MKL46Z4.h)(0x51C00508)
+I (D:\Programs\Keil_v5\ARM\PACK\ARM\CMSIS\4.3.0\CMSIS\Include\core_cm0plus.h)(0x55099064)
+I (D:\Programs\Keil_v5\ARM\ARMCC\include\stdint.h)(0x55AF3C42)
+I (D:\Programs\Keil_v5\ARM\PACK\ARM\CMSIS\4.3.0\CMSIS\Include\core_cmInstr.h)(0x55099064)
+I (D:\Programs\Keil_v5\ARM\PACK\ARM\CMSIS\4.3.0\CMSIS\Include\core_cmFunc.h)(0x55099064)
+I (D:\Programs\Keil_v5\ARM\PACK\Keil\Kinetis_KLxx_DFP\1.3.0\Device\Include\system_MKL46Z4.h)(0x51C00508)
+I (i2c1.h)(0x56A7E9F1)
+I (bt.h)(0x56BE16F9)
+I (rgb.h)(0x56BE0D29)
+I (motorDriver.h)(0x56B9F04C)
+F (RTE\Device\MKL46Z256xxx4\startup_MKL46Z4.s)(0x51C00508)(--cpu Cortex-M0+ --pd "__EVAL SETA 1" -g --apcs=interwork -I C:\Users\akwilop\Documents\TMP2\10_GYRO\RTE-I D:\Programs\Keil_v5\ARM\PACK\ARM\CMSIS\4.3.0\CMSIS\Include-I D:\Programs\Keil_v5\ARM\PACK\Keil\Kinetis_KLxx_DFP\1.3.0\Device\Include--pd "__UVISION_VERSION SETA 516" --pd "_RTE_ SETA 1" --pd "MKL46Z256xxx4 SETA 1"--list .\listings\startup_mkl46z4.lst --xref -o .\objects\startup_mkl46z4.o --depend .\objects\startup_mkl46z4.d)
+F (RTE\Device\MKL46Z256xxx4\system_MKL46Z4.c)(0x56964A03)(-c --cpu Cortex-M0+ -D__EVAL -g -O0 --apcs=interwork --split_sections-I C:\Users\akwilop\Documents\TMP2\10_GYRO\RTE-I D:\Programs\Keil_v5\ARM\PACK\ARM\CMSIS\4.3.0\CMSIS\Include-I D:\Programs\Keil_v5\ARM\PACK\Keil\Kinetis_KLxx_DFP\1.3.0\Device\Include-D__UVISION_VERSION="516" -D_RTE_ -DMKL46Z256xxx4-o .\objects\system_mkl46z4.o --omf_browse .\objects\system_mkl46z4.crf --depend .\objects\system_mkl46z4.d)
+I (D:\Programs\Keil_v5\ARM\ARMCC\include\stdint.h)(0x55AF3C42)
+I (D:\Programs\Keil_v5\ARM\PACK\Keil\Kinetis_KLxx_DFP\1.3.0\Device\Include\MKL46Z4.h)(0x51C00508)
+I (D:\Programs\Keil_v5\ARM\PACK\ARM\CMSIS\4.3.0\CMSIS\Include\core_cm0plus.h)(0x55099064)
+I (D:\Programs\Keil_v5\ARM\PACK\ARM\CMSIS\4.3.0\CMSIS\Include\core_cmInstr.h)(0x55099064)
+I (D:\Programs\Keil_v5\ARM\PACK\ARM\CMSIS\4.3.0\CMSIS\Include\core_cmFunc.h)(0x55099064)
+I (D:\Programs\Keil_v5\ARM\PACK\Keil\Kinetis_KLxx_DFP\1.3.0\Device\Include\system_MKL46Z4.h)(0x51C00508)

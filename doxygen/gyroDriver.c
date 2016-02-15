@@ -8,7 +8,8 @@ int integral;
 uint8_t gyro_ready = 0;
 
 /** \fn void gyroOffset(void)
-		\brief Funkcja usuwajaca offset z odczytow zyroskopu z osi Z*/
+		\brief Funkcja usuwajaca offset z odczytow zyroskopu z osi Z oraz
+					 zerujaca aktualny kurs(wartosc ktora zwroci 'gyroGetHdg()'*/
 
 void gyroOffset() {
 	waitms(200);
@@ -50,9 +51,10 @@ signed short gyroGetHdg() {
 
 /** \fn void gyroTurn(signed short deg_10)
 		\brief Funkcja sluzaca do obrotu robota o okreslony kat.
-		\brief '+' zgodnie ze wskazowkami zegara
-					 '-' przeciwnie do ruchu wskazowek zegara
-		\param deg_10 Wybor kata do obrotu w dziesiatych czesciach stopnia*/
+		\brief Prosze zwrocic uwage, ze funkcja wywoluje 'gyroOffset()' co zeruje aktualna wartosc zwracana przez 'gyroGetHdg()'.
+		\param deg_10 Wybor kata do obrotu w dziesiatych czesciach stopnia
+		\n '+' zgodnie ze wskazowkami zegara
+		\n '-' przeciwnie do ruchu wskazowek zegara*/
 
 void gyroTurn(signed short deg_10) {
 	int PID = 0;
@@ -82,8 +84,9 @@ void gyroTurn(signed short deg_10) {
 
 /** \fn void gyroStraight(signed short ticks, signed short speed)
 		\brief Funkcja do jazdy robota na wprost.
+		\brief Prosze zwrocic uwage, ze funkcja wywoluje 'gyroOffset()' co zeruje aktualna wartosc zwracana przez 'gyroGetHdg()'.
 		\param ticks Czas jazdy * 2.5ms
-		\param speed Szybkosc jazdy +/- 100, +przod, -tyl*/
+		\param speed Szybkosc jazdy +/- 100, +przod, -tyl*/	
 
 void gyroStraight(signed short ticks, signed short speed) {
 	int PID = 0;
@@ -94,7 +97,7 @@ void gyroStraight(signed short ticks, signed short speed) {
 		if(gyro_ready) {
 			prop = - gyroGetHdg();
 			integ += prop;
-			PID = ((Kp_straight * prop) + (Ki_straight * integ));		//PI
+			PID = ((Kp_straight * prop) + (Ki_straight * integ));
 			setTracks(speed + PID, speed - PID);
 			gyro_ready = 0;
 			ticks--;
